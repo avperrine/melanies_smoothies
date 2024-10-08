@@ -44,6 +44,17 @@ if ingredients_list:
         st.subheader(fruit_chosen + ' Nutrition Information')
         fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_chosen)
         fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)
+
+ #st.write(ingredients_string)
+
+#st.write(my_insert_stmt)
+
+
+time_to_insert = st.button('Submit Order')
+
+if time_to_insert:
+    session.sql(my_insert_stmt).collect()
+    st.success(f'Your Smoothie is ordered, {name_on_order}!', icon="✅")
         
 
 
